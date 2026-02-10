@@ -1,6 +1,6 @@
 # Research Pipeline (Ресерч-тян)
 
-Multi-agent research system for Claude Code. Performs deep search via Tavily and Reddit, verifies findings through an editorial review, and delivers structured results to the user -- all orchestrated automatically.
+Multi-agent research system for Claude Code. Performs deep search via Tavily and Reddit, verifies findings through an editorial review, and delivers structured results to the user — all orchestrated automatically.
 
 ## Agents
 
@@ -8,7 +8,7 @@ Multi-agent research system for Claude Code. Performs deep search via Tavily and
 |-------|-------|------|
 | `research-senior` | opus | Classifies the topic, asks clarifying questions, runs deep search via Tavily and Reddit, produces a draft |
 | `research-editor` | sonnet | Verifies the draft for accuracy, contradictions, and completeness; creates the final document |
-| `research-communicator` | sonnet | The user-facing agent -- presents results, relays follow-up questions, keeps a concise conversational style |
+| `research-communicator` | sonnet | The user-facing agent — presents results, relays follow-up questions, keeps a concise conversational style |
 
 ## Workflow
 
@@ -139,7 +139,7 @@ Then, in the finalization step of the same file, add instructions for saving:
 ### Saving to Obsidian
 
 - Draft: save to `Ресерч и исследования/[YYYY-MM-DD] [Topic].md`
-- Final: save to `Гайды, разборы/[Topic] -- [Type].md`
+- Final: save to `Гайды, разборы/[Topic] — [Type].md`
 ```
 
 ## Troubleshooting

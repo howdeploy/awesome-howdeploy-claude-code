@@ -8,7 +8,7 @@ No. The Claude Code Starter Kit is a community project. It is not developed, mai
 
 ### Will this break my existing Claude Code setup?
 
-The Starter Kit is a reference repository. It doesn't modify anything on its own -- you (or Claude Code) choose which files to copy into `~/.claude/`. If you're adding files manually, consider backing up first:
+The Starter Kit is a reference repository. It doesn't modify anything on its own — you (or Claude Code) choose which files to copy into `~/.claude/`. If you're adding files manually, consider backing up first:
 
 ```bash
 cp -r ~/.claude/ ~/.claude-backup-$(date +%Y%m%d)/
@@ -51,7 +51,7 @@ No. You only need the plugins that the components you use depend on:
 | **Tavily** | Research Pipeline (agent search tools), any agent with `tavily_search`/`tavily_extract` in its tools list |
 | **Obsidian** | Research Pipeline (only if saving results to Obsidian vault) |
 
-If you are only using LLM Studio slash commands (`/codex`, `/deepseek`, etc.), you do not need any plugins -- those commands work with just the shell scripts and OpenRouter API.
+If you are only using LLM Studio slash commands (`/codex`, `/deepseek`, etc.), you do not need any plugins — those commands work with just the shell scripts and OpenRouter API.
 
 ### How do I check which plugins are installed?
 
@@ -71,8 +71,8 @@ Each installed plugin has a subdirectory here.
 
 The Starter Kit itself is free. However, using it involves costs from two sources:
 
-1. **Claude Code subscription** -- Required to use Claude Code itself. See [Anthropic's pricing](https://www.anthropic.com/pricing) for current rates.
-2. **OpenRouter credits** -- Required only for LLM Studio slash commands (`/codex`, `/deepseek`, `/kimi`, `/minimax`, `/mistral`). You pay per token at the rates set by each model provider. Check [openrouter.ai/models](https://openrouter.ai/models) for current pricing.
+1. **Claude Code subscription** — Required to use Claude Code itself. See [Anthropic's pricing](https://www.anthropic.com/pricing) for current rates.
+2. **OpenRouter credits** — Required only for LLM Studio slash commands (`/codex`, `/deepseek`, `/kimi`, `/minimax`, `/mistral`). You pay per token at the rates set by each model provider. Check [openrouter.ai/models](https://openrouter.ai/models) for current pricing.
 
 Pipelines that use only Claude agents (Research Pipeline, Prompt Forge, Redactory) are covered by your Claude Code subscription and have no additional cost.
 
@@ -134,11 +134,11 @@ You can find the model ID for any model on [openrouter.ai/models](https://openro
 In regular Claude Code usage, you interact with a single Claude instance that handles everything. With pipelines, the work is split across multiple specialized agents, each with its own model, tools, and instructions. An orchestration layer coordinates them, passing outputs between agents and managing the flow.
 
 Benefits:
-- **Specialization** -- Each agent is focused on one task and has tailored instructions
-- **Model selection** -- Use opus for critical decisions, haiku for quick tasks
-- **Tool scoping** -- Each agent only has access to the tools it needs
-- **Reproducibility** -- The same pipeline produces consistent results across runs
-- **Checkpoints** -- Add review points where the user can approve or redirect
+- **Specialization** — Each agent is focused on one task and has tailored instructions
+- **Model selection** — Use opus for critical decisions, haiku for quick tasks
+- **Tool scoping** — Each agent only has access to the tools it needs
+- **Reproducibility** — The same pipeline produces consistent results across runs
+- **Checkpoints** — Add review points where the user can approve or redirect
 
 ### Can I run a pipeline step manually?
 

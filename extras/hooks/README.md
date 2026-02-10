@@ -1,6 +1,6 @@
 # Hook Examples
 
-Comprehensive guide to Claude Code hooks with 6 ready-to-use examples. Hooks are shell commands that execute automatically in response to Claude Code events -- they let you enforce rules, run formatters, trigger tests, and send notifications without manual intervention.
+Comprehensive guide to Claude Code hooks with 6 ready-to-use examples. Hooks are shell commands that execute automatically in response to Claude Code events — they let you enforce rules, run formatters, trigger tests, and send notifications without manual intervention.
 
 ## What Are Hooks
 
@@ -40,9 +40,9 @@ Each hook is a JSON object with these fields:
 
 ### Matcher Patterns
 
-- `"Write"` -- matches only the Write tool
-- `"Write|Edit"` -- matches Write or Edit
-- `"git.*"` -- matches any tool starting with "git"
+- `"Write"` — matches only the Write tool
+- `"Write|Edit"` — matches Write or Edit
+- `"git.*"` — matches any tool starting with "git"
 - Omit `matcher` entirely to match every tool invocation
 
 ### Exit Codes (PreToolUse only)

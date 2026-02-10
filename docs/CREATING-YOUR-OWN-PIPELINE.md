@@ -44,19 +44,19 @@ Each agent should have a single, clear responsibility. A typical pipeline has 2-
 
 Decide how agents interact:
 
-- **Sequential** (`->`) -- most common, each agent feeds into the next
-- **Parallel** (`||`) -- independent tasks that can run simultaneously
-- **Conditional** (`~>`) -- branch based on a previous agent's output
-- **With checkpoints** (`@review`) -- pause for user approval at critical points
+- **Sequential** (`->`) — most common, each agent feeds into the next
+- **Parallel** (`||`) — independent tasks that can run simultaneously
+- **Conditional** (`~>`) — branch based on a previous agent's output
+- **With checkpoints** (`@review`) — pause for user approval at critical points
 
 ### Choose Parameters
 
 What input does your pipeline need? Common parameters:
 
-- `topic` -- a subject to research or analyze
-- `target` -- a file or directory to process
-- `style` -- a mode or style of output
-- `output_path` -- where to save results
+- `topic` — a subject to research or analyze
+- `target` — a file or directory to process
+- `style` — a mode or style of output
+- `output_path` — where to save results
 
 ---
 
@@ -106,14 +106,14 @@ Format the results as described below...
 
 ### Frontmatter Fields
 
-**model** (required) -- The Claude model to use:
-- `opus` -- highest quality, best for complex reasoning and critical decisions (most expensive)
-- `sonnet` -- balanced quality and cost, suitable for most tasks (recommended default)
-- `haiku` -- fast and cheap, good for simple classification or quick lookups
+**model** (required) — The Claude model to use:
+- `opus` — highest quality, best for complex reasoning and critical decisions (most expensive)
+- `sonnet` — balanced quality and cost, suitable for most tasks (recommended default)
+- `haiku` — fast and cheap, good for simple classification or quick lookups
 
-**description** (required) -- A 1-2 sentence summary. This appears in agent listings and logs.
+**description** (required) — A 1-2 sentence summary. This appears in agent listings and logs.
 
-**tools** (optional) -- A list of tools the agent can use. Only grant what is needed:
+**tools** (optional) — A list of tools the agent can use. Only grant what is needed:
 
 | Category | Tools |
 |----------|-------|
@@ -160,19 +160,19 @@ orchestration:my-reporter:"Generate the final report"
 
 ### Operators
 
-**Sequential (`->`)** -- Run steps one after another. The output of each step is available to the next.
+**Sequential (`->`)** — Run steps one after another. The output of each step is available to the next.
 
 ```
 agent1:"task" -> agent2:"task" -> agent3:"task"
 ```
 
-**Parallel (`||`)** -- Run independent steps at the same time. Wrap parallel steps in square brackets.
+**Parallel (`||`)** — Run independent steps at the same time. Wrap parallel steps in square brackets.
 
 ```
 [agent1:"search web" || agent2:"search docs"] -> agent3:"merge results"
 ```
 
-**Conditional (`~>`)** -- Branch based on the result of the previous step.
+**Conditional (`~>`)** — Branch based on the result of the previous step.
 
 ```
 agent1:"validate input" ->
@@ -180,13 +180,13 @@ agent1:"validate input" ->
 (else)~> agent3:"handle error"
 ```
 
-**Checkpoint (`@review`)** -- Pause execution and ask the user for approval before continuing.
+**Checkpoint (`@review`)** — Pause execution and ask the user for approval before continuing.
 
 ```
 agent1:"analyze" -> @review:"Does this look correct?" -> agent2:"finalize"
 ```
 
-**Confirm (`@confirm`)** -- Notify the user without blocking execution.
+**Confirm (`@confirm`)** — Notify the user without blocking execution.
 
 ```
 agent1:"task" -> @confirm:"Step 1 complete" -> agent2:"task"
@@ -194,16 +194,16 @@ agent1:"task" -> @confirm:"Step 1 complete" -> agent2:"task"
 
 ### Variables
 
-- `{{param_name}}` -- Access parameters defined in the frontmatter
-- `{output}` -- The output of the previous step
-- `{context}` -- Shared pipeline context
+- `{{param_name}}` — Access parameters defined in the frontmatter
+- `{output}` — The output of the previous step
+- `{context}` — Shared pipeline context
 
 ### Best Practices for Workflows
 
 1. Keep pipelines to 5-7 steps maximum. Longer pipelines are hard to debug.
 2. Add `@review` before destructive or irreversible actions.
 3. Use parallel steps for independent work to save time.
-4. Write task descriptions clearly -- they are the prompts given to each agent.
+4. Write task descriptions clearly — they are the prompts given to each agent.
 
 ---
 
@@ -213,7 +213,7 @@ The orchestration plugin needs to know about your agents. There are two ways to 
 
 ### Option A: Run the Restore Script
 
-The simplest approach -- run `restore-orchestration-agents.sh`, which scans `~/.claude/agents/` and registers every `.md` file it finds:
+The simplest approach — run `restore-orchestration-agents.sh`, which scans `~/.claude/agents/` and registers every `.md` file it finds:
 
 ```bash
 ~/.claude/scripts/restore-orchestration-agents.sh
@@ -330,13 +330,13 @@ Let us walk through creating a `code-review-pipeline` from scratch.
 ### Design
 
 Three agents:
-- **code-analyzer** (sonnet) -- Scans the codebase, identifies files, classifies issues
-- **code-reviewer** (opus) -- Deep review of each issue, suggests fixes
-- **review-reporter** (sonnet) -- Formats the final report
+- **code-analyzer** (sonnet) — Scans the codebase, identifies files, classifies issues
+- **code-reviewer** (opus) — Deep review of each issue, suggests fixes
+- **review-reporter** (sonnet) — Formats the final report
 
 Flow: sequential with a review checkpoint before the final report.
 
-Parameter: `target` -- the directory or file to review.
+Parameter: `target` — the directory or file to review.
 
 ### Agent 1: code-analyzer
 
@@ -377,9 +377,9 @@ For each file, use Read to examine the contents. Look for:
 
 ### Step 3: Classification
 Categorize findings as:
-- CRITICAL -- Must fix, potential security or data loss risk
-- WARNING -- Should fix, potential bugs or bad practices
-- INFO -- Nice to fix, style or readability improvements
+- CRITICAL — Must fix, potential security or data loss risk
+- WARNING — Should fix, potential bugs or bad practices
+- INFO — Nice to fix, style or readability improvements
 
 ## Output Format
 
@@ -551,11 +551,11 @@ Or invoke directly:
 
 The wizard walks you through five phases:
 
-1. **Concept** -- Pipeline name (kebab-case), purpose, parameters
-2. **Agent Design** -- Number of agents, roles, models, tools for each
-3. **Workflow Structure** -- Flow type (sequential/parallel/conditional), review points
-4. **Documentation** -- Trigger phrases, where to save results
-5. **Generation** -- Creates all files, registers agents, updates CLAUDE.md, runs validation
+1. **Concept** — Pipeline name (kebab-case), purpose, parameters
+2. **Agent Design** — Number of agents, roles, models, tools for each
+3. **Workflow Structure** — Flow type (sequential/parallel/conditional), review points
+4. **Documentation** — Trigger phrases, where to save results
+5. **Generation** — Creates all files, registers agents, updates CLAUDE.md, runs validation
 
 ### What It Creates
 
@@ -573,8 +573,8 @@ The pipeline is immediately ready to use via `/orchestration:template {name}`.
 ### References
 
 The builder uses these reference documents for formatting:
-- `references/workflow-format.md` -- Complete .flow syntax documentation
-- `references/agent-format.md` -- Agent file structure and available tools
-- `references/registry-format.md` -- external-agents.json schema
+- `references/workflow-format.md` — Complete .flow syntax documentation
+- `references/agent-format.md` — Agent file structure and available tools
+- `references/registry-format.md` — external-agents.json schema
 
 These are available in the repository at `pipelines/orchestration-builder/references/`.

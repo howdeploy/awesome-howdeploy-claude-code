@@ -1,6 +1,6 @@
 # Architecture Overview
 
-This document describes the architecture of the Claude Code Starter Kit -- how the components fit together, how data flows between them, and where everything lives on disk.
+This document describes the architecture of the Claude Code Starter Kit — how the components fit together, how data flows between them, and where everything lives on disk.
 
 ## High-Level Diagram
 
@@ -47,19 +47,19 @@ This document describes the architecture of the Claude Code Starter Kit -- how t
 
 Claude Code is Anthropic's official CLI tool. It reads configuration from `~/.claude/`, executes prompts, invokes tools, and manages conversation context. The Starter Kit extends its capabilities through three mechanisms:
 
-1. **Orchestration Plugin** -- multi-agent pipelines
-2. **Slash Commands** -- custom commands defined in markdown files
-3. **Skills** -- prompt files that define Claude's behavior in specific scenarios
-4. **Settings Configuration** -- hooks, statusline, permissions
+1. **Orchestration Plugin** — multi-agent pipelines
+2. **Slash Commands** — custom commands defined in markdown files
+3. **Skills** — prompt files that define Claude's behavior in specific scenarios
+4. **Settings Configuration** — hooks, statusline, permissions
 
 ### Orchestration Plugin
 
 The Orchestration plugin is a Claude Code marketplace plugin that enables multi-agent workflows. It provides:
 
-- **Agent discovery** -- finds agents registered in `external-agents.json`
-- **Workflow execution** -- parses `.flow` files and runs agents in sequence, parallel, or conditionally
-- **Template system** -- `/orchestration:template <name>` launches a named pipeline
-- **Direct execution** -- `/orchestration:run <agent>:"<task>"` runs a single agent step
+- **Agent discovery** — finds agents registered in `external-agents.json`
+- **Workflow execution** — parses `.flow` files and runs agents in sequence, parallel, or conditionally
+- **Template system** — `/orchestration:template <name>` launches a named pipeline
+- **Direct execution** — `/orchestration:run <agent>:"<task>"` runs a single agent step
 
 The plugin reads from:
 ```
@@ -70,10 +70,10 @@ The plugin reads from:
 
 Agents are markdown files with YAML frontmatter that define a specialized AI persona. Each agent specifies:
 
-- **model** -- which Claude model to use (`opus`, `sonnet`, or `haiku`)
-- **description** -- what the agent does (shown in listings)
-- **tools** -- which tools the agent is allowed to use
-- **instructions** -- the system prompt body (markdown below the frontmatter)
+- **model** — which Claude model to use (`opus`, `sonnet`, or `haiku`)
+- **description** — what the agent does (shown in listings)
+- **tools** — which tools the agent is allowed to use
+- **instructions** — the system prompt body (markdown below the frontmatter)
 
 Example agent frontmatter:
 ```yaml
@@ -129,7 +129,7 @@ Structure:
 
 When the orchestration plugin encounters `orchestration:agent-name`, it looks up the agent in this registry, reads the `.md` file from the `path`, and uses the frontmatter to configure the execution.
 
-The registry is volatile -- plugin updates can reset it. The `restore-orchestration-agents.sh` script regenerates the registry by scanning all `.md` files in `~/.claude/agents/`.
+The registry is volatile — plugin updates can reset it. The `restore-orchestration-agents.sh` script regenerates the registry by scanning all `.md` files in `~/.claude/agents/`.
 
 ### Slash Commands
 
@@ -146,24 +146,24 @@ The LLM Studio pipeline provides five slash commands (`/codex`, `/deepseek`, `/k
 
 ### Skills
 
-Skills are prompt files placed in `~/.claude/skills/{skill-name}/SKILL.md`. They define how Claude should behave in specific scenarios -- changing its persona, communication style, and workflow.
+Skills are prompt files placed in `~/.claude/skills/{skill-name}/SKILL.md`. They define how Claude should behave in specific scenarios — changing its persona, communication style, and workflow.
 
 Unlike agents (which are invoked by the orchestration plugin), skills are loaded directly by Claude Code when it detects matching trigger phrases. A skill file contains:
 
 - **YAML frontmatter** with `name`, `description`, and `trigger_phrases`
-- **Algorithm** -- step-by-step instructions for Claude to follow
-- **Restrictions** -- what Claude should NOT do in this mode
-- **Examples** -- sample dialogues demonstrating expected behavior
+- **Algorithm** — step-by-step instructions for Claude to follow
+- **Restrictions** — what Claude should NOT do in this mode
+- **Examples** — sample dialogues demonstrating expected behavior
 
 Skills can also define entry/exit triggers (e.g., "I need support" enters the mode, "topic closed" exits it), reference external files (e.g., writing style samples in a `references/` folder), and include memory instructions for persisting information across sessions.
 
 The Starter Kit includes two standalone skill examples:
-- `content-writer` -- content creation with web research and style adaptation
-- `emotional-support` -- empathetic support mode with CBT techniques
+- `content-writer` — content creation with web research and style adaptation
+- `emotional-support` — empathetic support mode with CBT techniques
 
 And two pipeline-bound skills:
-- `research-pipeline` -- skill that triggers the research pipeline
-- `orchestration-builder` -- interactive wizard for creating new pipelines
+- `research-pipeline` — skill that triggers the research pipeline
+- `orchestration-builder` — interactive wizard for creating new pipelines
 
 ### Statusline
 
@@ -173,10 +173,10 @@ The statusline is a shell script (`extras/statusline/statusline.sh`) that provid
 2. The script parses this JSON using `sed` (no `jq` dependency)
 3. It calls the Anthropic OAuth API to fetch 5-hour rate limit utilization
 4. It formats and outputs colored text showing:
-   - **Session context usage** -- percentage of context window consumed
-   - **Session cost** -- dollars spent in current session
-   - **5-hour rate limit** -- percentage of rate limit consumed
-   - **Reset timer** -- time until the rate limit resets
+   - **Session context usage** — percentage of context window consumed
+   - **Session cost** — dollars spent in current session
+   - **5-hour rate limit** — percentage of rate limit consumed
+   - **Reset timer** — time until the rate limit resets
 
 Configuration in `settings.json`:
 ```json
@@ -205,9 +205,9 @@ Hooks let you run shell commands when specific Claude Code events occur (e.g., b
 ```
 
 Hook events include:
-- `PreToolUse` / `PostToolUse` -- before/after a tool is invoked
-- `Notification` -- when Claude sends a notification
-- `Stop` -- when Claude finishes a response
+- `PreToolUse` / `PostToolUse` — before/after a tool is invoked
+- `Notification` — when Claude sends a notification
+- `Stop` — when Claude finishes a response
 
 Each hook entry has a `matcher` (regex pattern for when to fire) and a `command` (shell command to execute).
 
@@ -340,4 +340,4 @@ When a user types `/codex Write a sorting function`:
 - **API keys** (`OPENROUTER_API_KEY`) are environment variables, never stored in config files
 - **Credentials** (`.credentials.json`) are in `.gitignore` and never committed
 - **Tool access** is restricted per-agent via the `tools` frontmatter field
-- **Hooks** run arbitrary shell commands -- review them before enabling
+- **Hooks** run arbitrary shell commands — review them before enabling

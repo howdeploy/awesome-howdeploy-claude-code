@@ -1,6 +1,6 @@
 # LLM Studio
 
-Route tasks to external LLM models via the OpenRouter API, directly from Claude Code. Each model is exposed as a slash command -- type `/kimi`, `/deepseek`, `/codex`, `/minimax`, or `/mistral` and Claude orchestrates the request, reads files if needed, and returns the result.
+Route tasks to external LLM models via the OpenRouter API, directly from Claude Code. Each model is exposed as a slash command — type `/kimi`, `/deepseek`, `/codex`, `/minimax`, or `/mistral` and Claude orchestrates the request, reads files if needed, and returns the result.
 
 ## Models
 
@@ -71,7 +71,7 @@ cp scripts/*.sh ~/.claude/scripts/llm-studio/
 
 ## Usage Examples
 
-### Kimi K2.5 -- document and code analysis
+### Kimi K2.5 — document and code analysis
 
 ```
 /kimi What is an MCP server?
@@ -81,19 +81,19 @@ cp scripts/*.sh ~/.claude/scripts/llm-studio/
 ```
 
 Kimi supports reading these file formats:
-- **PDF** -- via `pdftotext` or `pypdf`
-- **DOCX** -- via `python-docx`
-- **XLSX** -- via `pandas`
-- **Code and text files** -- read as-is
+- **PDF** — via `pdftotext` or `pypdf`
+- **DOCX** — via `python-docx`
+- **XLSX** — via `pandas`
+- **Code and text files** — read as-is
 
-### DeepSeek V3.2 -- universal tasks
+### DeepSeek V3.2 — universal tasks
 
 ```
 /deepseek Explain how blockchain works
 /deepseek Explain what src/main.py does
 ```
 
-### GPT-5.2 Codex -- programming tasks
+### GPT-5.2 Codex — programming tasks
 
 ```
 /codex Write a sorting function in Python
@@ -102,7 +102,7 @@ Kimi supports reading these file formats:
 
 After receiving the response, Claude can apply code changes to your files automatically using Edit/Write tools.
 
-### Minimax M2 Her -- roleplay and personalities
+### Minimax M2 Her — roleplay and personalities
 
 ```
 /minimax Play the role of a wise mentor
@@ -110,7 +110,7 @@ After receiving the response, Claude can apply code changes to your files automa
 /minimax Create a personality for a tech support AI assistant
 ```
 
-### Mistral Small Creative -- marketing and creative writing
+### Mistral Small Creative — marketing and creative writing
 
 ```
 /mistral Come up with 5 slogans for an AI startup
@@ -123,10 +123,10 @@ After receiving the response, Claude can apply code changes to your files automa
 | Model | PDF | DOCX | XLSX | Code/Text |
 |-------|-----|------|------|-----------|
 | Kimi K2.5 | Yes | Yes | Yes | Yes |
-| DeepSeek V3.2 | -- | -- | -- | Yes |
-| GPT-5.2 Codex | -- | -- | -- | Yes |
-| Minimax M2 Her | -- | -- | -- | -- |
-| Mistral Small Creative | -- | -- | -- | -- |
+| DeepSeek V3.2 | — | — | — | Yes |
+| GPT-5.2 Codex | — | — | — | Yes |
+| Minimax M2 Her | — | — | — | — |
+| Mistral Small Creative | — | — | — | — |
 
 For DeepSeek and Codex, Claude reads the file contents and passes them as part of the prompt text. For Kimi, the shell script handles file reading natively with format-specific extractors.
 

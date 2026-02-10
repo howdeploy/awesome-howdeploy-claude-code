@@ -1,6 +1,6 @@
 # Statusline
 
-Custom status bar for Claude Code that shows context window usage, session cost, 5-hour rate limit utilization, and time until rate limit reset -- all in a compact, color-coded display.
+Custom status bar for Claude Code that shows context window usage, session cost, 5-hour rate limit utilization, and time until rate limit reset — all in a compact, color-coded display.
 
 ## What It Shows
 
@@ -24,18 +24,18 @@ All percentage and time values are color-coded:
 | Color | Percentage | Time remaining |
 |-------|-----------|----------------|
 | Green | Below 50% | Under 1 hour |
-| Yellow | 50% -- 70% | 1 hour -- 3.5 hours |
+| Yellow | 50% — 70% | 1 hour — 3.5 hours |
 | Red | Above 70% | Over 3.5 hours |
 
 ## How It Works
 
 The script receives session statistics as JSON from stdin (provided by Claude Code automatically). It extracts:
 
-- `context_window_size` -- total context window capacity
-- `input_tokens` -- tokens used by input
-- `cache_creation_input_tokens` -- tokens used creating cache
-- `cache_read_input_tokens` -- tokens read from cache
-- `total_cost_usd` -- session cost
+- `context_window_size` — total context window capacity
+- `input_tokens` — tokens used by input
+- `cache_creation_input_tokens` — tokens used creating cache
+- `cache_read_input_tokens` — tokens read from cache
+- `total_cost_usd` — session cost
 
 For the 5-hour rate limit, the script calls the Anthropic OAuth usage API:
 
@@ -99,7 +99,7 @@ The script works on both macOS and Linux. Platform-specific differences are hand
 
 - `bash` (standard shell)
 - `curl` (for API requests)
-- `sed` (for JSON parsing -- no `jq` required)
+- `sed` (for JSON parsing — no `jq` required)
 
 The script intentionally avoids `jq` to work on systems without it installed.
 

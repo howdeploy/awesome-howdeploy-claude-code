@@ -16,30 +16,30 @@ Interactive wizard for creating new orchestration pipelines, agents, and registe
 ### Phase 1: Concept
 
 Define the pipeline basics:
-- **Name** -- kebab-case identifier (e.g., `code-review-pipeline`)
-- **Purpose** -- Research/Analysis, Development, Content, or Data Processing
-- **Parameters** -- what inputs the pipeline accepts (`topic`, `target`, `style`, `output_path`)
+- **Name** — kebab-case identifier (e.g., `code-review-pipeline`)
+- **Purpose** — Research/Analysis, Development, Content, or Data Processing
+- **Parameters** — what inputs the pipeline accepts (`topic`, `target`, `style`, `output_path`)
 
 ### Phase 2: Agents
 
 Design each agent in the pipeline:
-- **Role** -- Analyzer, Processor, Reviewer, or Communicator
-- **Model** -- `opus` (complex tasks), `sonnet` (balanced, recommended), or `haiku` (fast and cheap)
-- **Tools** -- File operations, Bash, Web search, Tavily, Obsidian, or interactive prompts
+- **Role** — Analyzer, Processor, Reviewer, or Communicator
+- **Model** — `opus` (complex tasks), `sonnet` (balanced, recommended), or `haiku` (fast and cheap)
+- **Tools** — File operations, Bash, Web search, Tavily, Obsidian, or interactive prompts
 
 ### Phase 3: Workflow
 
 Define how agents interact:
-- **Sequential** -- `A -> B -> C` (one after another)
-- **Parallel** -- `[A || B] -> C` (simultaneous execution, then merge)
-- **Conditional** -- `A ~> B / C` (branching by result)
-- **Checkpoints** -- `@review` points where the user approves before continuing
+- **Sequential** — `A -> B -> C` (one after another)
+- **Parallel** — `[A || B] -> C` (simultaneous execution, then merge)
+- **Conditional** — `A ~> B / C` (branching by result)
+- **Checkpoints** — `@review` points where the user approves before continuing
 
 ### Phase 4: Documentation
 
 Configure how the pipeline integrates into your setup:
-- **Trigger phrases** -- natural language phrases that activate the pipeline
-- **Output destination** -- Obsidian vault, current directory, custom path, or console only
+- **Trigger phrases** — natural language phrases that activate the pipeline
+- **Output destination** — Obsidian vault, current directory, custom path, or console only
 
 ### Phase 5: Generation
 
@@ -91,9 +91,9 @@ Detailed format specifications are included for building pipelines manually or u
 
 | Reference | Description |
 |-----------|-------------|
-| `references/workflow-format.md` | Syntax for `.flow` files -- operators (`->`, `||`, `~>`), checkpoints (`@review`, `@confirm`), variables (`{{param}}`), and examples |
-| `references/agent-format.md` | Structure of agent `.md` files -- frontmatter fields (`model`, `description`, `tools`), body sections, and available tools list |
-| `references/registry-format.md` | Format of `external-agents.json` -- required fields, add/remove/update operations, and validation rules |
+| `references/workflow-format.md` | Syntax for `.flow` files — operators (`->`, `||`, `~>`), checkpoints (`@review`, `@confirm`), variables (`{{param}}`), and examples |
+| `references/agent-format.md` | Structure of agent `.md` files — frontmatter fields (`model`, `description`, `tools`), body sections, and available tools list |
+| `references/registry-format.md` | Format of `external-agents.json` — required fields, add/remove/update operations, and validation rules |
 
 ## Templates
 

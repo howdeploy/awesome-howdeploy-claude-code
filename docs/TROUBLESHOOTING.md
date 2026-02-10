@@ -118,11 +118,11 @@ If the plugin directory exists but commands still do not work, try removing and 
    ```
 
 3. If you get a specific HTTP error:
-   - **401 Unauthorized** -- API key is invalid. Generate a new one at [openrouter.ai](https://openrouter.ai)
-   - **402 Payment Required** -- Insufficient credits. Add funds to your OpenRouter account
-   - **404 Not Found** -- Model ID is wrong. Check `MODEL_ALIASES` in `openrouter-api.py`
-   - **429 Too Many Requests** -- Rate limited. Wait and retry
-   - **503 Service Unavailable** -- The model is temporarily down. Try a different model
+   - **401 Unauthorized** — API key is invalid. Generate a new one at [openrouter.ai](https://openrouter.ai)
+   - **402 Payment Required** — Insufficient credits. Add funds to your OpenRouter account
+   - **404 Not Found** — Model ID is wrong. Check `MODEL_ALIASES` in `openrouter-api.py`
+   - **429 Too Many Requests** — Rate limited. Wait and retry
+   - **503 Service Unavailable** — The model is temporarily down. Try a different model
 
 4. If a specific model is unavailable, check its status on [openrouter.ai/models](https://openrouter.ai/models) or try an alternative alias. Current aliases are defined in `openrouter-api.py`:
 
@@ -201,10 +201,10 @@ If the plugin directory exists but commands still do not work, try removing and 
    ```
 
 2. Verify the event name is correct. Valid hook events:
-   - `PreToolUse` -- fires before a tool is called
-   - `PostToolUse` -- fires after a tool completes
-   - `Notification` -- fires on notifications
-   - `Stop` -- fires when Claude finishes
+   - `PreToolUse` — fires before a tool is called
+   - `PostToolUse` — fires after a tool completes
+   - `Notification` — fires on notifications
+   - `Stop` — fires when Claude finishes
 
 3. Check the `matcher` value. It is a regex pattern matched against the tool name. For example:
    - `"Bash"` matches any Bash tool use
@@ -357,7 +357,7 @@ Remove the entire Claude Code configuration (this will also remove your settings
 rm -rf ~/.claude/
 ```
 
-Then restart Claude Code -- it will recreate the base directory structure on first launch.
+Then restart Claude Code — it will recreate the base directory structure on first launch.
 
 **Warning:** This removes ALL Claude Code configuration, not just the Starter Kit. Back up `~/.claude/settings.json` and `~/.claude/CLAUDE.md` first if you have custom settings you want to preserve.
 

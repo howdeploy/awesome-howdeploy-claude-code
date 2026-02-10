@@ -37,9 +37,9 @@ When the user shares a GitHub repository URL:
 
 1. Extract `owner/repo` from the link
 2. Fetch `https://deepwiki.com/{owner}/{repo}` via `tavily_extract` (extract_depth: advanced)
-3. If found -- return structured breakdown: What it is, Architecture, Stack, Key modules, Quick start
-4. If not found -- report that the repo is not indexed on DeepWiki
-5. For deep analysis -- fetch subpages from the table of contents
+3. If found — return structured breakdown: What it is, Architecture, Stack, Key modules, Quick start
+4. If not found — report that the repo is not indexed on DeepWiki
+5. For deep analysis — fetch subpages from the table of contents
 ```
 
 ### 2. Ensure the Tavily plugin is installed
@@ -48,10 +48,10 @@ The lookup uses `tavily_extract` with advanced extraction. Make sure the Tavily 
 
 ## Limitations
 
-- **Public repositories only** -- DeepWiki does not index private repos
-- **Not all repos are indexed** -- popular and well-known repositories are almost always available; smaller or newer repos may not be
-- **Data may lag** -- DeepWiki content may not reflect the very latest state of a repository
-- **No authentication** -- no API key or login is required for DeepWiki itself
+- **Public repositories only** — DeepWiki does not index private repos
+- **Not all repos are indexed** — popular and well-known repositories are almost always available; smaller or newer repos may not be
+- **Data may lag** — DeepWiki content may not reflect the very latest state of a repository
+- **No authentication** — no API key or login is required for DeepWiki itself
 
 ## Examples
 

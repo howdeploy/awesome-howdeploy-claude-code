@@ -26,7 +26,7 @@
 
 Это моя реальная рабочая настройка [Claude Code](https://docs.anthropic.com/en/docs/claude-code), которую я выложил чтобы вы могли развернуть такое же у себя. Здесь не абстрактные примеры, а конфиги, которые я использую каждый день: исследовательский пайплайн, оркестрация внешних LLM, скиллы для написания текстов и поддержки, кастомный статус-бар, хуки и slash-команды.
 
-**Как это работает:** клонируете репо, открываете в Claude Code -- он читает `CLAUDE.md`, видит форматы и примеры всех расширений, и может настроить вам то же самое или создать что-то новое по аналогии. Не нужно разбираться в форматах самому -- Claude Code сделает это за вас.
+**Как это работает:** клонируете репо, открываете в Claude Code — он читает `CLAUDE.md`, видит форматы и примеры всех расширений, и может настроить вам то же самое или создать что-то новое по аналогии. Не нужно разбираться в форматах самому — Claude Code сделает это за вас.
 
 ### Что внутри
 
@@ -65,7 +65,7 @@ Claude Code прочитает `CLAUDE.md` этого репозитория, и
 <a id="research-pipeline-ru"></a>
 
 <details>
-<summary><b>Research Pipeline (Ресерч-тян)</b> -- структурированные веб-исследования</summary>
+<summary><b>Research Pipeline (Ресерч-тян)</b> — структурированные веб-исследования</summary>
 
 #### Обзор
 
@@ -105,7 +105,7 @@ Claude Code прочитает `CLAUDE.md` этого репозитория, и
 <a id="llm-studio-ru"></a>
 
 <details>
-<summary><b>LLM Studio</b> -- 5 внешних LLM через slash-команды</summary>
+<summary><b>LLM Studio</b> — 5 внешних LLM через slash-команды</summary>
 
 #### Обзор
 
@@ -148,7 +148,7 @@ export OPENROUTER_API_KEY='your-key-here'
 <a id="orchestration-builder-ru"></a>
 
 <details>
-<summary><b>Orchestration Builder</b> -- конструктор пайплайнов</summary>
+<summary><b>Orchestration Builder</b> — конструктор пайплайнов</summary>
 
 #### Обзор
 
@@ -156,11 +156,11 @@ export OPENROUTER_API_KEY='your-key-here'
 
 #### 5 фаз мастера
 
-1. **Концепт** -- название, назначение, входные параметры
-2. **Агенты** -- роли, модели (opus/sonnet/haiku), инструменты каждого агента
-3. **Workflow** -- структура потока выполнения, контрольные точки
-4. **Документация** -- триггерные фразы, формат результатов, где сохранять
-5. **Генерация** -- создание всех файлов и регистрация в системе
+1. **Концепт** — название, назначение, входные параметры
+2. **Агенты** — роли, модели (opus/sonnet/haiku), инструменты каждого агента
+3. **Workflow** — структура потока выполнения, контрольные точки
+4. **Документация** — триггерные фразы, формат результатов, где сохранять
+5. **Генерация** — создание всех файлов и регистрация в системе
 
 #### Что создаёт
 
@@ -181,9 +181,9 @@ export OPENROUTER_API_KEY='your-key-here'
 
 В составе идут справочники, которые мастер использует для валидации:
 
-- `references/workflow-format.md` -- формат workflow-файлов
-- `references/agent-format.md` -- формат файлов агентов
-- `references/registry-format.md` -- формат реестра агентов
+- `references/workflow-format.md` — формат workflow-файлов
+- `references/agent-format.md` — формат файлов агентов
+- `references/registry-format.md` — формат реестра агентов
 
 #### Требования
 
@@ -199,19 +199,19 @@ export OPENROUTER_API_KEY='your-key-here'
 <a id="deepwiki-lookup-ru"></a>
 
 <details>
-<summary><b>DeepWiki Lookup</b> -- анализ GitHub-репозиториев</summary>
+<summary><b>DeepWiki Lookup</b> — анализ GitHub-репозиториев</summary>
 
 #### Обзор
 
-Автоматический разбор любого публичного GitHub-репозитория через [deepwiki.com](https://deepwiki.com). Достаточно поделиться ссылкой на репозиторий -- Claude сам запросит DeepWiki и выдаст структурированный анализ.
+Автоматический разбор любого публичного GitHub-репозитория через [deepwiki.com](https://deepwiki.com). Достаточно поделиться ссылкой на репозиторий — Claude сам запросит DeepWiki и выдаст структурированный анализ.
 
 #### Что показывает
 
-- **Что это** -- краткое описание проекта
-- **Архитектура** -- ключевые компоненты и их связи
-- **Стек** -- языки, фреймворки, зависимости
-- **Ключевые модули** -- основные части кодовой базы
-- **Как использовать** -- быстрый старт
+- **Что это** — краткое описание проекта
+- **Архитектура** — ключевые компоненты и их связи
+- **Стек** — языки, фреймворки, зависимости
+- **Ключевые модули** — основные части кодовой базы
+- **Как использовать** — быстрый старт
 
 #### Как использовать
 
@@ -233,7 +233,7 @@ Claude автоматически определит ссылку, запрос�
 <a id="statusline-ru"></a>
 
 <details>
-<summary><b>Statusline</b> -- кастомный статус-бар</summary>
+<summary><b>Statusline</b> — кастомный статус-бар</summary>
 
 #### Обзор
 
@@ -262,11 +262,11 @@ Claude автоматически определит ссылку, запрос�
 <a id="hooks-ru"></a>
 
 <details>
-<summary><b>Hook Examples</b> -- 6 готовых примеров хуков</summary>
+<summary><b>Hook Examples</b> — 6 готовых примеров хуков</summary>
 
 #### Обзор
 
-Хуки -- это скрипты, которые Claude Code вызывает автоматически на определённых этапах работы. В комплекте 6 практических примеров, покрывающих все основные типы хуков.
+Хуки — это скрипты, которые Claude Code вызывает автоматически на определённых этапах работы. В комплекте 6 практических примеров, покрывающих все основные типы хуков.
 
 #### Примеры
 
@@ -281,9 +281,9 @@ Claude автоматически определит ссылку, запрос�
 
 #### Типы хуков
 
-- **`PreToolUse`** -- выполняется перед вызовом инструмента (может заблокировать действие)
-- **`PostToolUse`** -- выполняется после вызова инструмента
-- **`Notification`** -- реагирует на системные уведомления
+- **`PreToolUse`** — выполняется перед вызовом инструмента (может заблокировать действие)
+- **`PostToolUse`** — выполняется после вызова инструмента
+- **`Notification`** — реагирует на системные уведомления
 
 #### Требования
 
@@ -294,11 +294,11 @@ Claude автоматически определит ссылку, запрос�
 <a id="skills-ru"></a>
 
 <details>
-<summary><b>Skill Examples</b> -- 2 готовых скилла-промпта</summary>
+<summary><b>Skill Examples</b> — 2 готовых скилла-промпта</summary>
 
 #### Обзор
 
-Скиллы -- это промпт-файлы, которые определяют поведение Claude в конкретных сценариях. Активируются по триггерным фразам и следуют структурированному алгоритму. В комплекте 2 готовых примера.
+Скиллы — это промпт-файлы, которые определяют поведение Claude в конкретных сценариях. Активируются по триггерным фразам и следуют структурированному алгоритму. В комплекте 2 готовых примера.
 
 #### Примеры
 
@@ -342,11 +342,11 @@ Claude автоматически определит ссылку, запрос�
 <a id="clawdbot-ru"></a>
 
 <details>
-<summary><b>Clawdbot Setup</b> -- пример настройки персонального AI-бота</summary>
+<summary><b>Clawdbot Setup</b> — пример настройки персонального AI-бота</summary>
 
 #### Обзор
 
-Полный пример конфигурации персонального AI-ассистента (Clawdbot) -- бот с собственной личностью, долгосрочной памятью, голосовым общением и специализированными навыками. Работает через Telegram на базе Claude Code.
+Полный пример конфигурации персонального AI-ассистента (Clawdbot) — бот с собственной личностью, долгосрочной памятью, голосовым общением и специализированными навыками. Работает через Telegram на базе Claude Code.
 
 Это не абстрактная инструкция, а документация реальной рабочей настройки.
 
@@ -363,23 +363,23 @@ Claude автоматически определит ссылку, запрос�
 
 #### 11 навыков (skills)
 
-- **audio-transcript-search** -- сохранение и поиск по голосовым
-- **concept-notes** -- структурирование идей в заметки
-- **crypto-translate** -- перевод для крипто-контента (RU→EN)
-- **emotional-support** -- эмоциональная поддержка
-- **gm-gn** -- ритуалы утра/ночи с проверкой состояния
-- **nano-banana / seedream** -- генерация изображений
-- **server-status** -- мониторинг сервера
-- **stream-timecodes** -- таймкоды из VTT-файлов
-- **task-reminder** -- напоминания через cron
-- **voice-summary** -- суммаризация голосовых
+- **audio-transcript-search** — сохранение и поиск по голосовым
+- **concept-notes** — структурирование идей в заметки
+- **crypto-translate** — перевод для крипто-контента (RU→EN)
+- **emotional-support** — эмоциональная поддержка
+- **gm-gn** — ритуалы утра/ночи с проверкой состояния
+- **nano-banana / seedream** — генерация изображений
+- **server-status** — мониторинг сервера
+- **stream-timecodes** — таймкоды из VTT-файлов
+- **task-reminder** — напоминания через cron
+- **voice-summary** — суммаризация голосовых
 
 #### Ключевые принципы
 
-1. **Персонализация > Универсальность** -- один хорошо настроенный ассистент лучше десяти универсальных
-2. **Память критична** -- без MEMORY.md теряется контекст отношений
-3. **Skills делают магию** -- специализированные навыки эффективнее универсальных промптов
-4. **Heartbeat = проактивность** -- не только ответы, но и инициатива
+1. **Персонализация > Универсальность** — один хорошо настроенный ассистент лучше десяти универсальных
+2. **Память критична** — без MEMORY.md теряется контекст отношений
+3. **Skills делают магию** — специализированные навыки эффективнее универсальных промптов
+4. **Heartbeat = проактивность** — не только ответы, но и инициатива
 
 #### Подробности
 
@@ -445,7 +445,7 @@ claude-code-starter-kit/
 <details>
 <summary><b>Какие плагины Claude Code нужны?</b></summary>
 
-Зависит от компонентов. Минимально -- никаких. Для пайплайнов нужен Orchestration plugin, для поиска -- Tavily MCP plugin. Подробности в таблице требований выше.
+Зависит от компонентов. Минимально — никаких. Для пайплайнов нужен Orchestration plugin, для поиска — Tavily MCP plugin. Подробности в таблице требований выше.
 </details>
 
 <details>
@@ -454,7 +454,7 @@ claude-code-starter-kit/
 1. Добавьте alias модели в `openrouter-api.py` (словарь `MODEL_ALIASES`)
 2. Создайте файл slash-команды в `commands/`
 3. Создайте скрипт-обёртку в `scripts/`
-4. При использовании с оркестрацией -- зарегистрируйте агента в `external-agents.json`
+4. При использовании с оркестрацией — зарегистрируйте агента в `external-agents.json`
 </details>
 
 <details>
@@ -481,9 +481,9 @@ Claude Code работает на macOS и Linux. На Windows использу�
 
 ### What is this
 
-This is my actual working [Claude Code](https://docs.anthropic.com/en/docs/claude-code) setup, published so you can deploy the same thing for yourself. These aren't abstract examples -- they're configs I use daily: a research pipeline, external LLM orchestration, content writing and support skills, a custom status bar, hooks, and slash commands.
+This is my actual working [Claude Code](https://docs.anthropic.com/en/docs/claude-code) setup, published so you can deploy the same thing for yourself. These aren't abstract examples — they're configs I use daily: a research pipeline, external LLM orchestration, content writing and support skills, a custom status bar, hooks, and slash commands.
 
-**How it works:** clone the repo, open it in Claude Code -- it reads `CLAUDE.md`, sees the formats and examples of every extension type, and can set up the same for you or build something new based on these patterns. You don't need to learn the formats yourself -- Claude Code does it for you.
+**How it works:** clone the repo, open it in Claude Code — it reads `CLAUDE.md`, sees the formats and examples of every extension type, and can set up the same for you or build something new based on these patterns. You don't need to learn the formats yourself — Claude Code does it for you.
 
 ### What's inside
 
@@ -522,7 +522,7 @@ Claude Code will read the `CLAUDE.md` in this repo, study all extension formats,
 <a id="research-pipeline-en"></a>
 
 <details>
-<summary><b>Research Pipeline</b> -- structured web research</summary>
+<summary><b>Research Pipeline</b> — structured web research</summary>
 
 #### Overview
 
@@ -562,7 +562,7 @@ Or tell Claude: "research topic X", "investigate X", "run research pipeline".
 <a id="llm-studio-en"></a>
 
 <details>
-<summary><b>LLM Studio</b> -- 5 external LLMs via slash commands</summary>
+<summary><b>LLM Studio</b> — 5 external LLMs via slash commands</summary>
 
 #### Overview
 
@@ -605,7 +605,7 @@ Get your key at [openrouter.ai](https://openrouter.ai/).
 <a id="orchestration-builder-en"></a>
 
 <details>
-<summary><b>Orchestration Builder</b> -- pipeline constructor</summary>
+<summary><b>Orchestration Builder</b> — pipeline constructor</summary>
 
 #### Overview
 
@@ -613,11 +613,11 @@ A meta-tool for creating new pipelines. An interactive wizard guides you through
 
 #### 5 wizard phases
 
-1. **Concept** -- name, purpose, input parameters
-2. **Agents** -- roles, models (opus/sonnet/haiku), tools for each agent
-3. **Workflow** -- execution flow structure, checkpoints
-4. **Documentation** -- trigger phrases, output format, storage locations
-5. **Generation** -- creating all files and registering in the system
+1. **Concept** — name, purpose, input parameters
+2. **Agents** — roles, models (opus/sonnet/haiku), tools for each agent
+3. **Workflow** — execution flow structure, checkpoints
+4. **Documentation** — trigger phrases, output format, storage locations
+5. **Generation** — creating all files and registering in the system
 
 #### What it creates
 
@@ -638,9 +638,9 @@ Or say: "create pipeline", "new pipeline", "pipeline wizard".
 
 Includes reference docs that the wizard uses for validation:
 
-- `references/workflow-format.md` -- workflow file format
-- `references/agent-format.md` -- agent file format
-- `references/registry-format.md` -- agent registry format
+- `references/workflow-format.md` — workflow file format
+- `references/agent-format.md` — agent file format
+- `references/registry-format.md` — agent registry format
 
 #### Requirements
 
@@ -656,19 +656,19 @@ Includes reference docs that the wizard uses for validation:
 <a id="deepwiki-lookup-en"></a>
 
 <details>
-<summary><b>DeepWiki Lookup</b> -- GitHub repository analysis</summary>
+<summary><b>DeepWiki Lookup</b> — GitHub repository analysis</summary>
 
 #### Overview
 
-Automatic analysis of any public GitHub repository via [deepwiki.com](https://deepwiki.com). Just share a repository link -- Claude will query DeepWiki and provide a structured analysis.
+Automatic analysis of any public GitHub repository via [deepwiki.com](https://deepwiki.com). Just share a repository link — Claude will query DeepWiki and provide a structured analysis.
 
 #### What it shows
 
-- **What it is** -- brief project description
-- **Architecture** -- key components and their relationships
-- **Stack** -- languages, frameworks, dependencies
-- **Key modules** -- main parts of the codebase
-- **How to use** -- quick start guide
+- **What it is** — brief project description
+- **Architecture** — key components and their relationships
+- **Stack** — languages, frameworks, dependencies
+- **Key modules** — main parts of the codebase
+- **How to use** — quick start guide
 
 #### How to use
 
@@ -690,7 +690,7 @@ Claude will automatically detect the link, query DeepWiki, and provide the analy
 <a id="statusline-en"></a>
 
 <details>
-<summary><b>Statusline</b> -- custom status bar</summary>
+<summary><b>Statusline</b> — custom status bar</summary>
 
 #### Overview
 
@@ -719,7 +719,7 @@ The `statusline.sh` script configures a custom status bar via the Claude Code AP
 <a id="hooks-en"></a>
 
 <details>
-<summary><b>Hook Examples</b> -- 6 practical hook examples</summary>
+<summary><b>Hook Examples</b> — 6 practical hook examples</summary>
 
 #### Overview
 
@@ -738,9 +738,9 @@ Hooks are scripts that Claude Code calls automatically at specific stages of ope
 
 #### Hook types
 
-- **`PreToolUse`** -- runs before a tool call (can block the action)
-- **`PostToolUse`** -- runs after a tool call
-- **`Notification`** -- reacts to system notifications
+- **`PreToolUse`** — runs before a tool call (can block the action)
+- **`PostToolUse`** — runs after a tool call
+- **`Notification`** — reacts to system notifications
 
 #### Requirements
 
@@ -751,7 +751,7 @@ Hooks are scripts that Claude Code calls automatically at specific stages of ope
 <a id="skills-en"></a>
 
 <details>
-<summary><b>Skill Examples</b> -- 2 ready-made skill prompts</summary>
+<summary><b>Skill Examples</b> — 2 ready-made skill prompts</summary>
 
 #### Overview
 
@@ -799,13 +799,13 @@ Use these skills as templates for creating your own. Key elements of a skill:
 <a id="clawdbot-en"></a>
 
 <details>
-<summary><b>Clawdbot Setup</b> -- personal AI bot configuration example</summary>
+<summary><b>Clawdbot Setup</b> — personal AI bot configuration example</summary>
 
 #### Overview
 
-A complete configuration example for a personal AI assistant (Clawdbot) -- a bot with its own personality, long-term memory, voice communication, and specialized skills. Runs via Telegram on top of Claude Code.
+A complete configuration example for a personal AI assistant (Clawdbot) — a bot with its own personality, long-term memory, voice communication, and specialized skills. Runs via Telegram on top of Claude Code.
 
-This is not an abstract guide -- it's documentation of an actual working setup.
+This is not an abstract guide — it's documentation of an actual working setup.
 
 #### Workspace architecture
 
@@ -820,23 +820,23 @@ This is not an abstract guide -- it's documentation of an actual working setup.
 
 #### 11 skills included
 
-- **audio-transcript-search** -- save and search voice messages
-- **concept-notes** -- structure ideas into notes
-- **crypto-translate** -- translate crypto content (RU→EN)
-- **emotional-support** -- emotional support mode
-- **gm-gn** -- morning/night rituals with wellness check
-- **nano-banana / seedream** -- image generation
-- **server-status** -- server monitoring
-- **stream-timecodes** -- timecodes from VTT files
-- **task-reminder** -- cron-based reminders
-- **voice-summary** -- voice message summarization
+- **audio-transcript-search** — save and search voice messages
+- **concept-notes** — structure ideas into notes
+- **crypto-translate** — translate crypto content (RU→EN)
+- **emotional-support** — emotional support mode
+- **gm-gn** — morning/night rituals with wellness check
+- **nano-banana / seedream** — image generation
+- **server-status** — server monitoring
+- **stream-timecodes** — timecodes from VTT files
+- **task-reminder** — cron-based reminders
+- **voice-summary** — voice message summarization
 
 #### Key principles
 
-1. **Personalization > Universality** -- one well-tuned assistant beats ten generic ones
-2. **Memory is critical** -- without MEMORY.md, relationship context is lost
-3. **Skills are magic** -- specialized skills outperform universal prompts
-4. **Heartbeat = proactivity** -- not just responses, but initiative
+1. **Personalization > Universality** — one well-tuned assistant beats ten generic ones
+2. **Memory is critical** — without MEMORY.md, relationship context is lost
+3. **Skills are magic** — specialized skills outperform universal prompts
+4. **Heartbeat = proactivity** — not just responses, but initiative
 
 #### Details
 
@@ -902,7 +902,7 @@ No. Each component works independently. Pick what you need and ask Claude Code t
 <details>
 <summary><b>Which Claude Code plugins are required?</b></summary>
 
-Depends on the components. At minimum -- none. Pipelines require the Orchestration plugin, search features require the Tavily MCP plugin. See the requirements table above for details.
+Depends on the components. At minimum — none. Pipelines require the Orchestration plugin, search features require the Tavily MCP plugin. See the requirements table above for details.
 </details>
 
 <details>
@@ -911,7 +911,7 @@ Depends on the components. At minimum -- none. Pipelines require the Orchestrati
 1. Add a model alias in `openrouter-api.py` (the `MODEL_ALIASES` dictionary)
 2. Create a slash command file in `commands/`
 3. Create a wrapper script in `scripts/`
-4. If using with orchestration -- register the agent in `external-agents.json`
+4. If using with orchestration — register the agent in `external-agents.json`
 </details>
 
 <details>
