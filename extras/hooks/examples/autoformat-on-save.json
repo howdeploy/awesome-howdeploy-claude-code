@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "filepath=\"$CLAUDE_FILE_PATH\"; ext=\"${filepath##*.}\"; case \"$ext\" in js|ts|jsx|tsx|json|css|md) npx prettier --write \"$filepath\" 2>/dev/null;; py) python3 -m black \"$filepath\" 2>/dev/null;; go) gofmt -w \"$filepath\" 2>/dev/null;; esac; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+---
+name: {{name}}
+description: {{description}}
+params:
+  {{param_name}}: {{param_description}}
+---
+
+Workflow:
+
+{{#each agents}}
+orchestration:{{this.name}}:"{{this.task}}"{{#unless @last}} ->{{/unless}}
+{{/each}}
+
+{{!--
+USAGE:
+
+Variables:
+- {{name}} - имя пайплайна в kebab-case
+- {{description}} - описание пайплайна
+- {{param_name}} - имя параметра
+- {{param_description}} - описание параметра
+- {{agents}} - массив агентов
+
+Each agent:
+- {{name}} - имя агента
+- {{task}} - описание задачи
+
+OPERATORS:
+- -> sequential
+- || parallel (wrap in [])
+- ~> conditional
+- @review:"question" checkpoint
+
+EXAMPLES:
+
+Sequential:
+orchestration:analyzer:"Analyze {{topic}}" ->
+orchestration:processor:"Process results" ->
+orchestration:reporter:"Generate report"
+
+Parallel:
+[orchestration:web-search:"Search web" || orchestration:doc-search:"Search docs"] ->
+orchestration:aggregator:"Merge results"
+
+With review:
+orchestration:analyzer:"Analyze" ->
+@review:"Approve analysis?" ->
+orchestration:processor:"Process"
+
+Conditional:
+orchestration:validator:"Check {{target}}" ->
+(if valid)~> orchestration:processor:"Process" ~>
+(else)~> orchestration:error-handler:"Handle errors"
+--}}

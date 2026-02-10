@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "filepath=\"$CLAUDE_FILE_PATH\"; dir=$(dirname \"$filepath\"); ext=\"${filepath##*.}\"; case \"$ext\" in ts|js|tsx|jsx) testfile=\"${filepath%.*}.test.${ext}\"; [ -f \"$testfile\" ] && npx jest \"$testfile\" --silent 2>/dev/null;; py) testfile=\"${filepath%.*}_test.py\"; if [ ! -f \"$testfile\" ]; then testfile=\"$(dirname \"$filepath\")/test_$(basename \"$filepath\")\"; fi; [ -f \"$testfile\" ] && python3 -m pytest \"$testfile\" -q 2>/dev/null;; esac; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

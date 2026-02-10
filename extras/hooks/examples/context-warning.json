@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "context_usage",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "usage=\"$CLAUDE_CONTEXT_USAGE\"; if [ -n \"$usage\" ] && [ \"$usage\" -gt 70 ] 2>/dev/null; then echo \"WARNING: Context usage at ${usage}%. Consider starting a new conversation or using /compact.\"; if [ \"$usage\" -gt 90 ]; then title=\"Claude Code — Context Critical\"; msg=\"Context at ${usage}%! Start new conversation.\"; if command -v notify-send &>/dev/null; then notify-send -u critical \"$title\" \"$msg\"; elif command -v osascript &>/dev/null; then osascript -e \"display notification \\\"$msg\\\" with title \\\"$title\\\" sound name \\\"Basso\\\"\"; fi; fi; fi; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

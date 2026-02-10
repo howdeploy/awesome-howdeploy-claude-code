@@ -1,0 +1,19 @@
+#!/bin/bash
+# Minimax M2 Her - диалоги, ролевые игры, личности агентов
+# Usage: minimax-query.sh "prompt" ["system_prompt"]
+
+if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "ERROR: OPENROUTER_API_KEY not set. Run: export OPENROUTER_API_KEY='your-key'" >&2
+    exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROMPT="$1"
+SYSTEM="${2:-You are an assistant for dialogues and roleplay with a distinctive personality.}"
+
+if [ -z "$PROMPT" ]; then
+    echo "Usage: $0 \"prompt\" [\"system_prompt\"]" >&2
+    exit 1
+fi
+
+python3 "$SCRIPT_DIR/openrouter-api.py" --model minimax --prompt "$PROMPT" --system "$SYSTEM"

@@ -1,0 +1,11 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "tavily-tools@claude-settings": true,
+    "orchestration@orchestration-marketplace": true
+  }
+}

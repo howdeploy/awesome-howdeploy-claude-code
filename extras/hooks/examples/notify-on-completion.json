@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "title=\"Claude Code\"; msg=\"$CLAUDE_NOTIFICATION\"; if command -v notify-send &>/dev/null; then notify-send \"$title\" \"$msg\"; elif command -v osascript &>/dev/null; then osascript -e \"display notification \\\"$msg\\\" with title \\\"$title\\\"\"; elif command -v termux-notification &>/dev/null; then termux-notification --title \"$title\" --content \"$msg\"; fi; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

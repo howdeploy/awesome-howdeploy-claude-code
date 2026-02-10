@@ -1,0 +1,16 @@
+---
+name: research-pipeline
+description: Полный цикл исследования с Ресерч-тян. Глубокий сбор информации, верификация, структурированный результат.
+params:
+  topic: Тема для исследования
+---
+
+Workflow:
+
+orchestration:research-communicator:"Получить и уточнить запрос: {{topic}}" ->
+orchestration:research-senior:"Классифицировать тему и задать 5 уточняющих вопросов" ->
+orchestration:research-senior:"Провести глубокое исследование через Tavily/Reddit, сохранить черновик" ->
+orchestration:research-editor:"Проверить черновик на актуальность, противоречия, полноту. Показать чек-лист" ->
+@review:"Одобрить черновик для финализации?" ->
+orchestration:research-editor:"Создать итоговый документ" ->
+orchestration:research-communicator:"Уведомить пользователя о результатах исследования"

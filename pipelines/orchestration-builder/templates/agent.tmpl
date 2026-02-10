@@ -1,0 +1,81 @@
+# {{display_name}}
+
+---
+model: {{model}}
+description: {{description}}
+tools:
+{{#each tools}}
+  - {{this}}
+{{/each}}
+---
+
+{{instructions}}
+
+## Задачи
+
+{{#each responsibilities}}
+{{@index}}. {{this}}
+{{/each}}
+
+## Процесс
+
+{{#each process_steps}}
+### Шаг {{@index}}: {{this.title}}
+
+{{this.content}}
+
+{{/each}}
+
+## Формат вывода
+
+{{output_format}}
+
+{{!--
+USAGE:
+
+Variables:
+- {{display_name}} - человекочитаемое имя агента
+- {{model}} - opus | sonnet | haiku
+- {{description}} - краткое описание (1-2 предложения)
+- {{tools}} - массив инструментов
+- {{instructions}} - основные инструкции (2-3 предложения)
+- {{responsibilities}} - массив задач
+- {{process_steps}} - массив шагов [{title, content}]
+- {{output_format}} - описание формата вывода
+
+AVAILABLE TOOLS:
+
+File operations:
+- Read
+- Write
+- Edit
+- Glob
+- Grep
+
+Shell:
+- Bash
+
+Web:
+- WebSearch
+- WebFetch
+
+Tavily:
+- mcp__plugin_tavily-tools_tavily__tavily_search
+- mcp__plugin_tavily-tools_tavily__tavily_extract
+- mcp__plugin_tavily-tools_tavily__tavily_crawl
+- mcp__plugin_tavily-tools_tavily__tavily_research
+
+Obsidian:
+- mcp__obsidian__obsidian_get_file_contents
+- mcp__obsidian__obsidian_append_content
+- mcp__obsidian__obsidian_simple_search
+- mcp__obsidian__obsidian_patch_content
+
+Interactive:
+- AskUserQuestion
+
+MODELS:
+- opus: Complex tasks, architecture, critical decisions (expensive)
+- sonnet: Balanced quality/cost, most tasks (recommended)
+- haiku: Fast and cheap, simple tasks
+--}}

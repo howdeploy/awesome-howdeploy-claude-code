@@ -1,0 +1,119 @@
+# User Instructions
+
+<!-- STARTER-KIT:research-pipeline:START -->
+
+## Research Pipeline (Ресерч-тян)
+
+Когда пользователь говорит что-то вроде:
+- "загрузи мой ресерч пайплайн"
+- "запусти ресерч-тян"
+- "исследуй тему X" / "найди информацию про X"
+- "ресерч пайплайн"
+- "проведи исследование по X"
+- "изучи тему X"
+
+**Запусти через orchestration плагин:**
+
+```
+/orchestration:template research-pipeline
+```
+
+Введи тему исследования когда будет запрошен параметр `topic`.
+
+### Агенты пайплайна
+
+| Агент | Модель | Роль |
+|-------|--------|------|
+| orchestration:research-senior | opus | Классификация, уточнение, глубокий поиск через Tavily/Reddit |
+| orchestration:research-editor | sonnet | Проверка на актуальность, противоречия, полноту |
+| orchestration:research-communicator | sonnet | Общение с пользователем, финальный вывод |
+
+### Если агенты не работают после обновления плагина
+```bash
+~/.claude/scripts/restore-orchestration-agents.sh
+```
+
+<!-- STARTER-KIT:research-pipeline:END -->
+
+---
+
+<!-- STARTER-KIT:llm-studio:START -->
+
+## LLM Studio
+
+Оркестрация сторонних LLM моделей через OpenRouter API. 5 моделей доступны через slash-команды.
+
+### Доступные модели
+
+| Команда | Модель | Специализация |
+|---------|--------|---------------|
+| `/kimi` | Kimi K2.5 | Документы, код, контекст 262K |
+| `/deepseek` | DeepSeek V3.2 | Универсальная, дешёвая |
+| `/codex` | GPT-5.2 Codex | Код, программирование |
+| `/minimax` | Minimax M2 Her | Диалоги, ролевые игры |
+| `/mistral` | Mistral Small Creative | Креатив, маркетинг |
+
+### Использование
+
+```
+/kimi Проанализируй этот документ
+/codex Напиши функцию сортировки на Python
+/deepseek Объясни как работает blockchain
+/minimax Сыграй роль мудрого наставника
+/mistral Придумай 5 слоганов для AI-стартапа
+```
+
+### Требуется
+```bash
+export OPENROUTER_API_KEY='your-key'
+```
+
+<!-- STARTER-KIT:llm-studio:END -->
+
+---
+
+<!-- STARTER-KIT:orchestration-builder:START -->
+
+## Orchestration Builder
+
+Интерактивный мастер для создания новых пайплайнов, агентов и их регистрации.
+
+### Триггерные фразы
+- "create pipeline" / "создай пайплайн"
+- "новый пайплайн" / "new pipeline"
+- "pipeline wizard" / "мастер пайплайна"
+
+### Запуск
+```
+/orchestration-builder
+```
+
+### Что создаёт
+1. **Workflow файл** — `~/.claude/workflows/{name}.flow`
+2. **Агенты** — `~/.claude/agents/{agent}.md`
+3. **Регистрация** — запись в `external-agents.json`
+4. **Документация** — секция в `CLAUDE.md`
+
+<!-- STARTER-KIT:orchestration-builder:END -->
+
+---
+
+<!-- STARTER-KIT:deepwiki-lookup:START -->
+
+## DeepWiki Lookup
+
+Автоматический разбор репозиториев через DeepWiki.
+
+### Когда активируется
+Когда пользователь даёт ссылку на GitHub-репозиторий.
+
+### Алгоритм
+1. Извлечь `owner/repo` из ссылки
+2. Запросить `https://deepwiki.com/{owner}/{repo}` через `tavily_extract`
+3. Дать структурированный разбор: Что это, Архитектура, Стек, Ключевые модули
+
+### Примечания
+- Работает только для публичных репозиториев
+- Не все репо проиндексированы
+
+<!-- STARTER-KIT:deepwiki-lookup:END -->

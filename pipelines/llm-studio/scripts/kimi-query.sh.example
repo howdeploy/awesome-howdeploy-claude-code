@@ -1,0 +1,136 @@
+#!/bin/bash
+# Kimi K2.5 - чтение документов, анализ кода, большой контекст 262K
+# Usage:
+#   kimi-query.sh "prompt" ["system_prompt"]
+#   kimi-query.sh --files "file1.txt" "file2.pdf" -- "prompt" ["system_prompt"]
+
+if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "ERROR: OPENROUTER_API_KEY not set. Run: export OPENROUTER_API_KEY='your-key'" >&2
+    exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Парсинг аргументов
+FILES=()
+PROMPT=""
+SYSTEM="Ты эксперт по анализу документов и кода. Внимательно читай, проверяй и структурируй информацию."
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --files)
+            shift
+            # Собираем файлы до -- или до конца
+            while [[ $# -gt 0 && "$1" != "--" && "$1" != --* ]]; do
+                FILES+=("$1")
+                shift
+            done
+            ;;
+        --)
+            shift
+            ;;
+        --system)
+            shift
+            SYSTEM="$1"
+            shift
+            ;;
+        *)
+            if [ -z "$PROMPT" ]; then
+                PROMPT="$1"
+            else
+                SYSTEM="$1"
+            fi
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$PROMPT" ]; then
+    echo "Usage: $0 [--files file1 file2 ...] [--] \"prompt\" [\"system_prompt\"]" >&2
+    echo "Examples:" >&2
+    echo "  $0 \"Analyze this code\"" >&2
+    echo "  $0 --files src/main.ts src/utils.ts -- \"Find bugs in these files\"" >&2
+    echo "  $0 --files docs/*.pdf -- \"Summarize these documents\"" >&2
+    exit 1
+fi
+
+# Собираем содержимое файлов
+FILE_CONTENT=""
+for file in "${FILES[@]}"; do
+    # Разворачиваем glob-паттерны
+    for expanded_file in $file; do
+        if [ -f "$expanded_file" ]; then
+            FILE_CONTENT+="\n\n=== $expanded_file ===\n"
+
+            # Определяем тип файла
+            case "${expanded_file,,}" in
+                *.pdf)
+                    # PDF - извлекаем текст через pdftotext
+                    if command -v pdftotext &> /dev/null; then
+                        FILE_CONTENT+=$(pdftotext "$expanded_file" - 2>/dev/null)
+                    else
+                        # Fallback: попробуем python с pypdf
+                        FILE_CONTENT+=$(python3 -c "
+import sys
+try:
+    from pypdf import PdfReader
+    reader = PdfReader('$expanded_file')
+    for page in reader.pages:
+        print(page.extract_text())
+except:
+    try:
+        import PyPDF2
+        reader = PyPDF2.PdfReader(open('$expanded_file', 'rb'))
+        for page in reader.pages:
+            print(page.extract_text())
+    except Exception as e:
+        print(f'[Error reading PDF: {e}]')
+" 2>/dev/null)
+                    fi
+                    ;;
+                *.docx)
+                    # DOCX - через python-docx
+                    FILE_CONTENT+=$(python3 -c "
+try:
+    from docx import Document
+    doc = Document('$expanded_file')
+    for para in doc.paragraphs:
+        print(para.text)
+except Exception as e:
+    print(f'[Error reading DOCX: {e}]')
+" 2>/dev/null)
+                    ;;
+                *.xlsx|*.xls)
+                    # Excel - через pandas или openpyxl
+                    FILE_CONTENT+=$(python3 -c "
+try:
+    import pandas as pd
+    df = pd.read_excel('$expanded_file')
+    print(df.to_string())
+except Exception as e:
+    print(f'[Error reading Excel: {e}]')
+" 2>/dev/null)
+                    ;;
+                *.jpg|*.jpeg|*.png|*.gif|*.webp)
+                    FILE_CONTENT+="[Image: $expanded_file - Kimi K2.5 supports images via API, but this script doesn't implement image upload yet]"
+                    ;;
+                *)
+                    # Текстовые файлы - читаем как есть
+                    FILE_CONTENT+=$(cat "$expanded_file" 2>/dev/null)
+                    ;;
+            esac
+        else
+            echo "Warning: File not found: $expanded_file" >&2
+        fi
+    done
+done
+
+# Формируем финальный промпт
+if [ -n "$FILE_CONTENT" ]; then
+    FULL_PROMPT="$PROMPT\n\n--- FILE CONTENTS ---$FILE_CONTENT"
+else
+    FULL_PROMPT="$PROMPT"
+fi
+
+# Отправляем запрос
+echo -e "$FULL_PROMPT" | python3 "$SCRIPT_DIR/openrouter-api.py" --model kimi --system "$SYSTEM"

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE 'git\\s+commit'; then staged=$(git diff --cached --name-only --diff-filter=d 2>/dev/null); js_files=$(echo \"$staged\" | grep -E '\\.(js|ts|jsx|tsx)$' || true); py_files=$(echo \"$staged\" | grep -E '\\.py$' || true); if [ -n \"$js_files\" ] && command -v npx &>/dev/null; then echo \"$js_files\" | xargs npx eslint --no-error-on-unmatched-pattern 2>/dev/null || { echo 'BLOCKED: ESLint errors found. Fix before committing.'; exit 2; }; fi; if [ -n \"$py_files\" ] && command -v python3 &>/dev/null; then echo \"$py_files\" | xargs python3 -m ruff check 2>/dev/null || { echo 'BLOCKED: Ruff lint errors found. Fix before committing.'; exit 2; }; fi; fi; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

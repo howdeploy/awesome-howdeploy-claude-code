@@ -1,0 +1,73 @@
+#!/bin/bash
+# GPT-5.2 Codex - код, программирование
+# Usage:
+#   codex-query.sh "prompt" ["system_prompt"]
+#   codex-query.sh --files "file1.ts" "file2.py" -- "prompt" ["system_prompt"]
+
+if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "ERROR: OPENROUTER_API_KEY not set. Run: export OPENROUTER_API_KEY='your-key'" >&2
+    exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Парсинг аргументов
+FILES=()
+PROMPT=""
+SYSTEM="You are an expert programmer. Write clean, efficient code."
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --files)
+            shift
+            while [[ $# -gt 0 && "$1" != "--" && "$1" != --* ]]; do
+                FILES+=("$1")
+                shift
+            done
+            ;;
+        --)
+            shift
+            ;;
+        --system)
+            shift
+            SYSTEM="$1"
+            shift
+            ;;
+        *)
+            if [ -z "$PROMPT" ]; then
+                PROMPT="$1"
+            else
+                SYSTEM="$1"
+            fi
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$PROMPT" ]; then
+    echo "Usage: $0 [--files file1 file2 ...] [--] \"prompt\" [\"system_prompt\"]" >&2
+    exit 1
+fi
+
+# Собираем содержимое файлов
+FILE_CONTENT=""
+for file in "${FILES[@]}"; do
+    for expanded_file in $file; do
+        if [ -f "$expanded_file" ]; then
+            FILE_CONTENT+="\n\n=== $expanded_file ===\n"
+            FILE_CONTENT+=$(cat "$expanded_file" 2>/dev/null)
+        else
+            echo "Warning: File not found: $expanded_file" >&2
+        fi
+    done
+done
+
+# Формируем финальный промпт
+if [ -n "$FILE_CONTENT" ]; then
+    FULL_PROMPT="$PROMPT\n\n--- FILE CONTENTS ---$FILE_CONTENT"
+else
+    FULL_PROMPT="$PROMPT"
+fi
+
+# Отправляем запрос
+echo -e "$FULL_PROMPT" | python3 "$SCRIPT_DIR/openrouter-api.py" --model codex --system "$SYSTEM"

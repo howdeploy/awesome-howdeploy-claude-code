@@ -1,0 +1,32 @@
+# Secrets
+.env
+.credentials.json
+*.key
+*.pem
+
+# Claude Code runtime
+.claude/
+history.jsonl
+stats-cache.json
+cache/
+todos/
+debug/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,75 @@
+---
+
+## {{display_name}}
+
+{{description}}
+
+### Триггерные фразы
+{{#each trigger_phrases}}
+- "{{this}}"
+{{/each}}
+
+### Запуск
+```
+/orchestration:template {{name}}
+```
+
+### Агенты
+
+| Агент | Модель | Роль |
+|-------|--------|------|
+{{#each agents}}
+| orchestration:{{this.name}} | {{this.model}} | {{this.role}} |
+{{/each}}
+
+{{#if output_section}}
+### Результаты сохраняются
+{{output_section}}
+{{/if}}
+
+{{#if additional_notes}}
+### Дополнительно
+{{additional_notes}}
+{{/if}}
+
+{{!--
+USAGE:
+
+Variables:
+- {{display_name}} - человекочитаемое имя пайплайна
+- {{description}} - описание назначения
+- {{name}} - имя в kebab-case для template
+- {{trigger_phrases}} - массив триггерных фраз
+- {{agents}} - массив агентов [{name, model, role}]
+- {{output_section}} - куда сохраняются результаты (опционально)
+- {{additional_notes}} - дополнительные заметки (опционально)
+
+EXAMPLE OUTPUT:
+
+---
+
+## Code Review Pipeline
+
+Автоматизированный код-ревью с анализом качества и безопасности.
+
+### Триггерные фразы
+- "code review"
+- "проверь код"
+- "запусти ревью"
+
+### Запуск
+```
+/orchestration:template code-review-pipeline
+```
+
+### Агенты
+
+| Агент | Модель | Роль |
+|-------|--------|------|
+| orchestration:code-analyzer | sonnet | Анализ структуры и качества |
+| orchestration:security-checker | opus | Проверка на уязвимости |
+| orchestration:review-reporter | sonnet | Формирование отчёта |
+
+### Результаты сохраняются
+- Отчёты: `./reports/code-review-[date].md`
+--}}

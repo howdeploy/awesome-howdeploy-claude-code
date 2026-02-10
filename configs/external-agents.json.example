@@ -1,0 +1,26 @@
+{
+  "externalAgents": {
+    "research-senior": {
+      "path": "~/.claude/agents/research-senior.md",
+      "description": "Deep information gathering. Query classification, requirements refinement, multi-source search.",
+      "model": "opus",
+      "registered": "2026-01-01",
+      "usageCount": 0
+    },
+    "research-editor": {
+      "path": "~/.claude/agents/research-editor.md",
+      "description": "Verification, supplementation and finalization of research. Reviews drafts and creates final documents.",
+      "model": "sonnet",
+      "registered": "2026-01-01",
+      "usageCount": 0
+    },
+    "research-communicator": {
+      "path": "~/.claude/agents/research-communicator.md",
+      "description": "Public face of the research system. The only agent that communicates directly with the user.",
+      "model": "sonnet",
+      "registered": "2026-01-01",
+      "usageCount": 0
+    }
+  },
+  "lastUpdated": "2026-01-01T00:00:00+00:00"
+}

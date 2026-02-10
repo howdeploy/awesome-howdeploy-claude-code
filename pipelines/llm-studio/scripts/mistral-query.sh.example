@@ -1,0 +1,19 @@
+#!/bin/bash
+# Mistral Small Creative - креатив, маркетинг, ролевое общение
+# Usage: mistral-query.sh "prompt" ["system_prompt"]
+
+if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "ERROR: OPENROUTER_API_KEY not set. Run: export OPENROUTER_API_KEY='your-key'" >&2
+    exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROMPT="$1"
+SYSTEM="${2:-You are a creative assistant for marketing and roleplay.}"
+
+if [ -z "$PROMPT" ]; then
+    echo "Usage: $0 \"prompt\" [\"system_prompt\"]" >&2
+    exit 1
+fi
+
+python3 "$SCRIPT_DIR/openrouter-api.py" --model mistral --prompt "$PROMPT" --system "$SYSTEM"
