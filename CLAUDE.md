@@ -57,6 +57,7 @@ trigger_phrases:
 **Examples in this repo:**
 - `extras/skills/content-writer/SKILL.md` — content creation with web research and style matching from reference files
 - `extras/skills/emotional-support/SKILL.md` — empathetic support mode with CBT techniques and memory
+- `extras/tweakcc/SKILL.md` — interactive tweakcc configurator with config mapping and theme palettes
 - `pipelines/research-pipeline/skills/SKILL.md` — pipeline launcher skill with trigger phrases
 - `pipelines/orchestration-builder/skills/SKILL.md` — interactive wizard skill with multi-phase AskUserQuestion flow
 
@@ -316,12 +317,17 @@ This is useful as a reference for building any Claude Code-based bot or assistan
 
 ## Validation & Testing
 
+This is a documentation and config reference repo — there is no build system, test suite, or linter. The following manual checks are the primary validation:
+
 ```bash
 # Validate JSON files (hooks, configs)
 python3 -c "import json; json.load(open('path/to/file.json'))"
 
 # Check no API keys leaked into repo
 grep -r "sk-or-v1-[a-zA-Z0-9]" .
+
+# Validate an installed pipeline (checks workflow, agents, registry, CLAUDE.md section)
+pipelines/orchestration-builder/scripts/validate-pipeline.sh <pipeline-name>
 ```
 
 ## Repo Architecture
@@ -335,6 +341,7 @@ pipelines/
   orchestration-builder/      → skills/, references/, templates/
 extras/
   clawdbot/                   → Full personal AI bot setup example
+  tweakcc/                    → tweakcc configurator skill + example config
   skills/                     → content-writer/, emotional-support/
   hooks/examples/             → 6 JSON hook examples
   statusline/                 → statusline.sh
@@ -362,6 +369,10 @@ configs/
 **New LLM model**: add alias in `MODEL_ALIASES` in `openrouter-api.py`, create `.sh.example` script (no API keys!), create command `.md` in `commands/`.
 
 **New hook**: create JSON in `extras/hooks/examples/`, document in `extras/hooks/README.md`.
+
+## Contributing
+
+See `CONTRIBUTING.md` for guidelines on adding pipelines, skills, hooks, and models. Key rules: no API keys in commits, follow existing patterns, test with Claude Code.
 
 ## Bilingual README
 

@@ -38,6 +38,7 @@
 | [DeepWiki Lookup](#deepwiki-lookup-ru) | Расширение | Автоматический анализ GitHub-репозиториев через deepwiki.com | Claude Code, Tavily plugin |
 | [Statusline](#statusline-ru) | Расширение | Кастомный статус-бар: контекст, стоимость, rate limit, таймер | Claude Code, curl |
 | [Hook Examples](#hooks-ru) | Примеры | 6 примеров хуков: автоформат, блокировка секретов, lint и др. | Claude Code |
+| [tweakcc Configurator](#tweakcc-ru) | Расширение | Кастомизация интерфейса Claude Code: темы, фичи, thinking verbs | Claude Code, [tweakcc](https://github.com/nicekid1/tweakcc) |
 | [Skill Examples](#skills-ru) | Примеры | 2 готовых скилла: контент-райтер и эмоциональная поддержка | Claude Code |
 | [Clawdbot Setup](#clawdbot-ru) | Пример | Полная настройка персонального AI-бота: личность, память, навыки, голос | Claude Code, Clawdbot Gateway |
 
@@ -291,6 +292,46 @@ Claude автоматически определит ссылку, запрос�
 
 </details>
 
+<a id="tweakcc-ru"></a>
+
+<details>
+<summary><b>tweakcc Configurator</b> — кастомизация интерфейса Claude Code</summary>
+
+#### Обзор
+
+Интерактивная настройка Claude Code через [tweakcc](https://github.com/nicekid1/tweakcc). Вместо сложного TUI — пошаговый опрос на русском через `AskUserQuestion`. Скилл читает текущий конфиг, показывает меню категорий и применяет выбранные настройки.
+
+#### Что настраивает
+
+| Категория | Настройки |
+|-----------|-----------|
+| Стартовый экран | Скрыть баннер, лого Clawd, подсказку ctrl-g |
+| Цветовая тема | 11 встроенных тем (4 Catppuccin + Dark/Light/ANSI/Colorblind/Mono) или кастомная |
+| Фичи | Swarm mode, память сессии, /remember, быстрый MCP, лимиты |
+| Оформление | Рамка ввода, формат таблиц, стиль сообщений |
+| Thinking verbs | ~170 забавных, серьёзные, русские или свой список |
+| Модели субагентов | Переопределение для Plan, Explore, General-purpose |
+
+#### Встроенные темы
+
+1. **Catppuccin Mocha (Rosewater)** — тёмная, тёплый акцент rosewater, мягкие диффы
+2. **Catppuccin Latte (Rosewater)** — светлая, пастельная с rosewater
+3. **Catppuccin Frappe (Rosewater)** — средне-тёмная, приглушённая
+4. **Catppuccin Macchiato (Rosewater)** — тёмная, мягкий контраст
+5. **Dark / Light mode** — стандартные RGB-палитры
+6. **ANSI Dark / Light** — нативные терминальные цвета
+7. **Colorblind Dark / Light** — высококонтрастные доступные палитры
+8. **Monochrome** — только оттенки серого
+
+Триггеры: "tweakcc", "настрой tweakcc", "поменяй тему", "настройка claude code"
+
+#### Требования
+
+- Claude Code
+- [tweakcc](https://github.com/nicekid1/tweakcc)
+
+</details>
+
 <a id="skills-ru"></a>
 
 <details>
@@ -421,6 +462,10 @@ claude-code-starter-kit/
 │   │   └── statusline.sh
 │   ├── hooks/                        # Примеры хуков
 │   │   └── examples/                 #   6 готовых примеров
+│   ├── tweakcc/                      # Конфигуратор tweakcc
+│   │   ├── SKILL.md                  #   Скилл-промпт
+│   │   ├── config.json.example       #   Пример конфига с 11 темами
+│   │   └── README.md
 │   └── skills/                       # Примеры скиллов
 │       ├── content-writer/           #   Контент-райтер
 │       │   └── SKILL.md
@@ -495,6 +540,7 @@ This is my actual working [Claude Code](https://docs.anthropic.com/en/docs/claud
 | [DeepWiki Lookup](#deepwiki-lookup-en) | Extension | Automatic GitHub repository analysis via deepwiki.com | Claude Code, Tavily plugin |
 | [Statusline](#statusline-en) | Extension | Custom status bar: context, cost, rate limit, timer | Claude Code, curl |
 | [Hook Examples](#hooks-en) | Examples | 6 hook examples: autoformat, block secrets, lint, and more | Claude Code |
+| [tweakcc Configurator](#tweakcc-en) | Extension | Claude Code interface customization: themes, features, thinking verbs | Claude Code, [tweakcc](https://github.com/nicekid1/tweakcc) |
 | [Skill Examples](#skills-en) | Examples | 2 ready-made skills: content writer and emotional support | Claude Code |
 | [Clawdbot Setup](#clawdbot-en) | Example | Full personal AI bot setup: personality, memory, skills, voice | Claude Code, Clawdbot Gateway |
 
@@ -748,6 +794,46 @@ Hooks are scripts that Claude Code calls automatically at specific stages of ope
 
 </details>
 
+<a id="tweakcc-en"></a>
+
+<details>
+<summary><b>tweakcc Configurator</b> — Claude Code interface customization</summary>
+
+#### Overview
+
+Interactive Claude Code customization via [tweakcc](https://github.com/nicekid1/tweakcc). Instead of a complex TUI, this skill provides a step-by-step Russian-language questionnaire through `AskUserQuestion`. It reads the current config, shows a category menu, and applies selected settings.
+
+#### What it customizes
+
+| Category | Settings |
+|----------|----------|
+| Startup screen | Hide banner, Clawd logo, ctrl-g hint |
+| Color themes | 11 built-in themes (4 Catppuccin + Dark/Light/ANSI/Colorblind/Mono) or custom |
+| Features | Swarm mode, session memory, /remember, fast MCP, limits |
+| Formatting | Input border, table format, message styling |
+| Thinking verbs | ~170 fun verbs, serious-only, Russian, or custom list |
+| Subagent models | Override models for Plan, Explore, General-purpose |
+
+#### Built-in themes
+
+1. **Catppuccin Mocha (Rosewater)** —darkest, warm rosewater accent, soft diffs
+2. **Catppuccin Latte (Rosewater)** —light, warm pastel with rosewater accent
+3. **Catppuccin Frappe (Rosewater)** —muted dark, subdued rosewater
+4. **Catppuccin Macchiato (Rosewater)** —medium dark, gentle rosewater
+5. **Dark / Light mode** —standard RGB palettes
+6. **ANSI Dark / Light** —native terminal colors
+7. **Colorblind Dark / Light** —high-contrast accessible palettes
+8. **Monochrome** —grayscale only
+
+Triggers: "tweakcc", "configure tweakcc", "change theme", "claude code customization"
+
+#### Requirements
+
+- Claude Code
+- [tweakcc](https://github.com/nicekid1/tweakcc)
+
+</details>
+
 <a id="skills-en"></a>
 
 <details>
@@ -878,6 +964,10 @@ claude-code-starter-kit/
 │   │   └── statusline.sh
 │   ├── hooks/                        # Hook examples
 │   │   └── examples/                 #   6 ready-made examples
+│   ├── tweakcc/                      # tweakcc configurator
+│   │   ├── SKILL.md                  #   Skill prompt
+│   │   ├── config.json.example       #   Example config with 11 themes
+│   │   └── README.md
 │   └── skills/                       # Skill examples
 │       ├── content-writer/           #   Content writer
 │       │   └── SKILL.md
